@@ -1,6 +1,8 @@
 server:
   port: 8080
-    
+  servlet:
+    context-path: /test-server-b
+
 spring: 
   # 启动加载配置版本
   profiles:

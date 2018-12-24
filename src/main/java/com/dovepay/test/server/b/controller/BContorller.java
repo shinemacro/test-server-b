@@ -66,7 +66,7 @@ public class BContorller {
         return result;
     }
     
-    @RequestMapping(value="/test-server-b/b", method=RequestMethod.GET)
+    @RequestMapping(value="/b", method=RequestMethod.GET)
     @ApiOperation(value="查询所有b接口", notes="返回所有b")
     public String getAllB(){
         System.out.println("getAllB run...");
@@ -74,7 +74,7 @@ public class BContorller {
     }
     
     @ApiOperation(value="b查询接口", notes="根据ID返回b")
-    @RequestMapping(value="/test-server-b/b/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/b/{id}", method=RequestMethod.GET)
     public Object getB(@PathVariable(value = "id") Integer id){
         B b = new B();
         b.setId(id);
