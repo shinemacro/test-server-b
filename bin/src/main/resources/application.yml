@@ -1,0 +1,20 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /test-server-a
+    
+spring: 
+  # 启动加载配置版本
+  profiles:
+    active: dev
+  # jsp配置
+  mvc: 
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: jsp
+  # 配置过滤器org.springframework.web.filter.CharacterEncodingFilter
+  http: 
+    encoding: 
+      charset: UTF-8
+      enabled: true 
+      force: true
