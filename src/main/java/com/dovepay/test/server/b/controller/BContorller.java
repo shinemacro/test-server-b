@@ -44,7 +44,7 @@ public class BContorller {
     public Object index(){
         System.out.println("test-server-b run...");
         Map<String, Object> result = new LinkedHashMap<String, Object>();
-        result.put("serverVersion", "v1");
+        result.put("serverVersion", "v2");
         result.put("serverName", "test-server-b");
         result.put("spring.profiles.active", env.getProperty("spring.profiles.active"));
         result.put("env", env.getProperty("b.env"));
