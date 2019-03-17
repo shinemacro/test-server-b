@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +43,8 @@ public class BContorller {
     @ApiOperation(value="test-server-b服务启动接口", notes="返回服务信息")
     public Object index(){
         System.out.println("test-server-b run...");
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new LinkedHashMap<String, Object>();
+        result.put("serverVersion", "v1");
         result.put("serverName", "test-server-b");
         result.put("spring.profiles.active", env.getProperty("spring.profiles.active"));
         result.put("env", env.getProperty("b.env"));
