@@ -1,6 +1,8 @@
  package com.dovepay.test.server.b.controller;
 
 import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
+import java.lang.management.MemoryUsage;
 import java.lang.management.RuntimeMXBean;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -63,6 +65,32 @@ public class BContorller {
         // Get start Date
         Date startDate = new Date(startTime);
         result.put("jvmStartTime", new SimpleDateFormat("yyyyMMdd HH:mm:ss").format(startDate));
+        
+        System.out.println("======通过ManagementFactory.getMemoryMXBean()来获取相关系统状态======");
+        MemoryMXBean memorymbean = ManagementFactory.getMemoryMXBean();   
+        MemoryUsage usage = memorymbean.getHeapMemoryUsage();   
+        System.out.println("INIT HEAP: " + usage.getInit()/1024);   
+        System.out.println("MAX HEAP: " + usage.getMax()/1024);   
+        System.out.println("USE HEAP: " + usage.getUsed()/1024);   
+        System.out.println("\nFull Information:");   
+        System.out.println("Heap Memory Usage: " + memorymbean.getHeapMemoryUsage());   
+        System.out.println("Non-Heap Memory Usage: " + memorymbean.getNonHeapMemoryUsage());  
+        result.put("INIT HEAP", usage.getInit()/1024);
+        result.put("MAX HEAP: ", usage.getMax()/1024);
+        result.put("USE HEAP: ", usage.getUsed()/1024);
+        result.put("Non-Heap Memory Usage: ", memorymbean.getNonHeapMemoryUsage());
+
+        System.out.println("======通过Runtime.getRuntime()来获取相关系统状态======");
+        Runtime runtime = Runtime.getRuntime();
+        int totalMemory = (int)runtime.totalMemory()/1024;//Java 虚拟机中的内存总量,以字节为单位  
+        int freeMemory = (int)runtime.freeMemory()/1024;//Java 虚拟机中的空闲内存量  
+        int maxMemory = (int)Runtime.getRuntime().maxMemory()/1024;
+        System.out.println("总的内存量 totalMemory is "+totalMemory);         
+        System.out.println("空闲内存量 freeMemory is " + freeMemory);          
+        System.out.println("最大内存量maxMemory is " + maxMemory);  
+        result.put("总的内存量 totalMemory", totalMemory);
+        result.put("空闲内存量 freeMemory", freeMemory);
+        result.put("最大内存量maxMemory is ", maxMemory); 
         
         return result;
     }
